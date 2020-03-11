@@ -1,0 +1,48 @@
+.todo-footer {
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  color: grey;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: rgb(124, 124, 124, 0.2);
+}
+
+.todo-footer__container {
+  padding: 10px 0px 10px 10px;
+  width: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-footer__button {
+  background: none;
+  border-style: none;
+  color: grey;
+  padding-right: 20px;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.todo-footer__button:hover {
+  text-decoration: underline;
+}
+
+.todo-footer__label {
+  cursor: pointer;
+}
+
+.todo-footer__radio {
+  visibility: hidden;
+  margin: 6px 6px 6px 0px;
+}
+
+.todo-footer__radio:checked + .todo-footer__label {
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(255, 136, 0, 0.2);
+  border-radius: 3px;
+  padding: 2px;
+}

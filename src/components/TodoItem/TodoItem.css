@@ -1,0 +1,127 @@
+.todo-item {
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: rgb(124, 124, 124, 0.2);
+}
+
+.todo-item__container {
+  display: flex;
+}
+
+/* Todo text styling */
+.todo-item__label {
+  padding-left: 15px;
+  font-size: 150%;
+  align-self: center;
+  width: 450px;
+  cursor: default;
+  word-wrap: break-word;
+}
+
+.todo-item__label_crossed {
+  font-size: 150%;
+  padding-left: 15px;
+  padding-top: 2px;
+  width: 450px;
+  align-self: center;
+  text-decoration: line-through;
+  cursor: default;
+  word-wrap: break-word;
+  color: rgb(114, 113, 113, 0.5);
+}
+
+/* Edit window styling */
+.todo-item__input {
+  display: flex;
+  margin: 0px 1px 0 65px;
+  width: 100%;
+  height: 35px;
+  outline: none;
+  font-size: larger;
+}
+
+/* Delete button styling */
+.todo-item__button {
+  padding: 0px 20px 0px 0px;
+  border: none;
+  background: none;
+  color: rgb(255, 0, 0, 0.3);
+}
+
+.todo-item__button {
+  display: none;
+  outline: none;
+}
+
+.todo-item:hover .todo-item__button {
+  display: flex;
+}
+
+.todo-item__button:hover {
+  color: rgb(255, 0, 0, 0.5);
+}
+
+/* Checkbox styling */
+.todo-item__checkbox-container {
+  width: 40px;
+  height: 40px;
+  padding: 0px 0px 1px 10px;
+  align-self: center;
+}
+
+/* Hide checkboxes */
+.todo-item__checkbox {
+  cursor: default;
+  opacity: 0;
+}
+
+/* Draw circle */
+.todo-item__checkbox-container .todo-item__checkbox-label::before {
+  content: '';
+  display: flex;
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  color: rgb(126, 126, 126, 0.5);
+  outline: none;
+  border: 1px solid;
+}
+
+/* Draw check mark */
+.todo-item__checkbox-container .todo-item__checkbox-label::after {
+  padding-left: 10px;
+  height: 5px;
+  width: 5px;
+  border-left: 2px solid;
+  border-bottom: 2px solid;
+  color: rgb(0, 129, 0, 0.5);
+  outline: none;
+  transform: rotate(-45deg);
+}
+
+.todo-item__checkbox-container .todo-item__checkbox-label {
+  position: relative;
+}
+.todo-item__checkbox-container .todo-item__checkbox-label::before,
+.todo-item__checkbox-container .todo-item__checkbox-label::after {
+  position: absolute;
+}
+
+.todo-item__checkbox-container .todo-item__checkbox-label::before {
+  top: 3px;
+}
+
+.todo-item__checkbox-container .todo-item__checkbox-label::after {
+  left: -14px;
+  top: 12px;
+}
+
+.todo-item__checkbox-container
+  input[type='checkbox']:checked
+  + .todo-item__checkbox-label::after {
+  content: '';
+}
