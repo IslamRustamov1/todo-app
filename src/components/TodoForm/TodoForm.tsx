@@ -22,7 +22,7 @@ const TodoForm = observer(() => {
     checkItem,
     clearAllCompleted,
     showClearCompletedButton,
-    editItemValue
+    editItemValue,
   } = rootStoreContext.ITEM_STORE;
 
   const { changeFilterType } = rootStoreContext.FILTER_STORE;
@@ -39,7 +39,7 @@ const TodoForm = observer(() => {
   function handleEditKeyPressed(
     editedItem: ItemType,
     value: string,
-    pressedKey: number
+    pressedKey: number,
   ) {
     if (pressedKey !== 13) {
       return;

@@ -1,21 +1,26 @@
+/* eslint-disable no-param-reassign */
 import { observable, computed, decorate, action, toJS } from 'mobx';
+import { RootStoreType, ItemType } from '../types/types';
 
-export class ItemStore {
-  items = [];
+export default class ItemStore {
+  items: ItemType[] = [];
+
   IDcounter = 0;
 
-  constructor(rootStore) {
+  rootStore: RootStoreType;
+
+  constructor(rootStore: RootStoreType) {
     this.rootStore = rootStore;
   }
 
   get amount() {
     const arr = toJS(this.items);
 
-    return arr.filter(item => !item.completed).length;
+    return arr.filter((item: ItemType) => !item.completed).length;
   }
 
-  editItemValue = editedItem => {
-    const itemsCopy = this.items.map(item => {
+  editItemValue = (editedItem: ItemType) => {
+    const itemsCopy = this.items.map((item: ItemType) => {
       if (item.id === editedItem.id) {
         item = editedItem;
         item.editing = !item.editing;
@@ -26,12 +31,12 @@ export class ItemStore {
     this.items = itemsCopy;
   };
 
-  addNewItem = value => {
+  addNewItem = (val: string) => {
     const newItem = {
       id: this.IDcounter,
-      value: value,
+      value: val,
       completed: false,
-      editing: false
+      editing: false,
     };
 
     this.IDcounter += 1;
@@ -39,22 +44,26 @@ export class ItemStore {
     this.items.push(newItem);
   };
 
-  deleteItem = deletedItem => {
-    this.items = this.items.filter(item => item.id !== deletedItem.id);
+  deleteItem = (deletedItem: ItemType) => {
+    this.items = this.items.filter(
+      (item: ItemType) => item.id !== deletedItem.id,
+    );
   };
 
-  checkItem = completedItemID => {
-    const completedItem = this.items.find(item => item.id === completedItemID);
+  checkItem = (completedItemID: number) => {
+    const completedItem: ItemType | undefined = this.items.find(
+      (item: ItemType) => item.id === completedItemID,
+    );
 
-    completedItem.completed = !completedItem.completed;
+    completedItem!.completed = !completedItem!.completed;
   };
 
   clearAllCompleted = () => {
-    this.items = this.items.filter(item => !item.completed);
+    this.items = this.items.filter((item: ItemType) => !item.completed);
   };
 
   get filterItems() {
-    let filteredItems = [];
+    let filteredItems: ItemType[] = [];
     const items = toJS(this.items);
 
     switch (this.rootStore.FILTER_STORE.filter) {
@@ -62,10 +71,14 @@ export class ItemStore {
         filteredItems = items;
         break;
       case 'completed':
-        filteredItems = items.filter(item => item.completed === true);
+        filteredItems = items.filter(
+          (item: ItemType) => item.completed === true,
+        );
         break;
       case 'active':
-        filteredItems = items.filter(item => item.completed === false);
+        filteredItems = items.filter(
+          (item: ItemType) => item.completed === false,
+        );
         break;
       default:
         break;
@@ -96,7 +109,7 @@ export class ItemStore {
     return this.items.some(item => item.completed);
   };
 
-  showEditWindow = changedItemID => {
+  showEditWindow = (changedItemID: number) => {
     const itemsCopy = this.items.map(item => {
       if (changedItemID === item.id) {
         item.editing = !item.editing;
@@ -118,5 +131,5 @@ decorate(ItemStore, {
   completeAllItems: action,
   showClearCompletedButton: action,
   showEditWindow: action,
-  editItemValue: action
+  editItemValue: action,
 });

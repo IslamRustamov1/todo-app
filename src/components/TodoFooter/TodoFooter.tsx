@@ -9,7 +9,7 @@ export const TodoFooter = observer((props: TodoFooterProps) => {
     itemsAmount,
     showClearCompleted,
     handleFilterChange,
-    handleClearCompleted
+    handleClearCompleted,
   } = props;
   return (
     <div className="todo-footer">
