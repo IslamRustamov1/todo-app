@@ -3,7 +3,6 @@ import { Switch, Route, Link } from 'react-router-dom';
 
 import TodoLogin from '../components/TodoLogin/TodoLogin';
 import TodoSignup from '../components/TodoSignup/TodoSignup';
-import TodoForm from '../components/TodoForm/TodoForm';
 
 import './routes.css';
 
@@ -27,9 +26,6 @@ function Routes() {
         </Route>
         <Route path="/">
           <TodoLogin />
-        </Route>
-        <Route path="/todos">
-          <TodoForm />
         </Route>
       </Switch>
     </div>
