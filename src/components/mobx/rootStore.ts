@@ -1,5 +1,4 @@
 import React from 'react';
-import { ITEM_STORE, FILTER_STORE } from './constants';
 import ItemStore from './itemStore';
 import FilterStore from './filterStore';
 import { FilterStoreType, ItemStoreType } from '../types/types';

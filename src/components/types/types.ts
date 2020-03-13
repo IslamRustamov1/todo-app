@@ -1,5 +1,5 @@
 export interface ItemType {
-  id: number;
+  id: string;
   value: string;
   completed: boolean;
   editing: boolean;
@@ -12,6 +12,8 @@ export interface RequestOptionsType {
 export interface NetworkClientType {
   postRequest: Function;
   getRequest: Function;
+  putRequest: Function;
+  deleteRequest: Function;
 }
 
 export interface FilterStoreType {

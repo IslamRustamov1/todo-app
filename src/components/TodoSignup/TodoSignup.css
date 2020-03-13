@@ -37,6 +37,9 @@
 }
 
 .todo-signup__submit {
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
   margin-bottom: 20px;
   background-color: white;
   outline: none;

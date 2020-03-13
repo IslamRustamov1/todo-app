@@ -11,7 +11,7 @@ export const TodoItem = observer((props: TodoItemProps) => {
     handleEditFinish,
     handleCheckItem,
     handleEditShow,
-    handleDeleteItem
+    handleDeleteItem,
   } = props;
   return (
     <div className="todo-item">
@@ -32,16 +32,12 @@ export const TodoItem = observer((props: TodoItemProps) => {
             <input
               type="checkbox"
               className="todo-item__checkbox"
-              id={item.id.toFixed()}
+              id={item.id}
               onClick={() => handleCheckItem(item.id)}
               checked={item.completed}
             />
-            <label
-              className="todo-item__checkbox-label"
-              htmlFor={item.id.toFixed()}
-            />
+            <label className="todo-item__checkbox-label" htmlFor={item.id} />
           </div>
-
           <label
             className={
               item.completed ? 'todo-item__label_crossed' : 'todo-item__label'
@@ -50,7 +46,6 @@ export const TodoItem = observer((props: TodoItemProps) => {
           >
             {item.value}
           </label>
-
           <button
             type="button"
             className="fa fa-times todo-item__button"

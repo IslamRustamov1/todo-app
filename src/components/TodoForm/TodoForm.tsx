@@ -1,5 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { Redirect } from 'react-router-dom';
+
 import { TodoInputField } from '../TodoInputField/TodoInputField';
 import { TodoItem } from '../TodoItem/TodoItem';
 import { TodoFooter } from '../TodoFooter/TodoFooter';
@@ -93,6 +95,7 @@ const TodoForm = observer(() => {
           <div className="todo-form__background-element2" />
         </div>
       )}
+      {!localStorage.getItem('token') && <Redirect to="/login" />}
     </div>
   );
 });

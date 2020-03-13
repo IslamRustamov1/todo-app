@@ -1,4 +1,3 @@
-import ApiRequests from './ApiRequests';
 import { NetworkClientType } from '../types/types';
 
 export default class AuthenticationApi {
@@ -8,24 +7,27 @@ export default class AuthenticationApi {
     this.networkClient = netClient;
   }
 
-  signupRequest = async (url: string, body: Object) => {
-    const options = {
+  getOptions = () => {
+    return {
       headers: {
         'Content-Type': 'application/json',
       },
     };
+  };
+
+  signupRequest = async (url: string, body: Object) => {
+    const options = this.getOptions();
     const result = await this.networkClient.postRequest(url, body, options);
-    console.log(result);
+
+    return result;
   };
 
   loginRequest = async (url: string, body: Object) => {
-    const options = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+    const options = this.getOptions();
     const result = await this.networkClient.postRequest(url, body, options);
-    console.log(result);
-    localStorage.setItem('token', result.token);
+
+    if (result.token) localStorage.setItem('token', result.token);
+
+    return result;
   };
 }

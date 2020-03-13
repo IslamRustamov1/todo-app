@@ -1,21 +1,16 @@
 import { RequestOptionsType } from '../types/types';
 
 export default class ApiRequests {
+  buildRequest = (method: string, body: Object, options: Object) => {
+    return Object.assign({ method: method }, body, options);
+  };
+
   postRequest = async (
     url: string,
     body: Object,
     options: RequestOptionsType,
   ) => {
-    const post = Object.assign(
-      {
-        method: 'POST',
-      },
-      body,
-      options,
-    );
-
-    const response = await fetch(url, post);
-
+    const response = await fetch(url, this.buildRequest('POST', body, options));
     const data = await response.json();
 
     return data;
@@ -26,16 +21,7 @@ export default class ApiRequests {
     body: Object,
     options: RequestOptionsType,
   ) => {
-    const get = Object.assign(
-      {
-        method: 'GET',
-      },
-      body,
-      options,
-    );
-    console.log(get);
-    const response = await fetch(url, get);
-
+    const response = await fetch(url, this.buildRequest('GET', body, options));
     const data = await response.json();
 
     return data;
@@ -43,18 +29,10 @@ export default class ApiRequests {
 
   putRequest = async (
     url: string,
-    req: RequestInit,
+    body: Object,
     options: RequestOptionsType,
   ) => {
-    if (options) {
-      req.headers = {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + options.token,
-      };
-    }
-
-    const response = await fetch(url, req);
-
+    const response = await fetch(url, this.buildRequest('PUT', body, options));
     const data = await response.json();
 
     return data;
@@ -62,18 +40,13 @@ export default class ApiRequests {
 
   deleteRequest = async (
     url: string,
-    req: RequestInit,
+    body: Object,
     options: RequestOptionsType,
   ) => {
-    if (options) {
-      req.headers = {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + options.token,
-      };
-    }
-
-    const response = await fetch(url, req);
-
+    const response = await fetch(
+      url,
+      this.buildRequest('DELETE', body, options),
+    );
     const data = await response.json();
 
     return data;

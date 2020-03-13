@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
-import AuthenticationApi from '../api/AuthenticationApi';
-import ApiRequests from '../api/ApiRequests';
+import { useHistory } from 'react-router-dom';
+
+import { user, appURL } from '../mobx/constants';
 
 import './TodoLogin.css';
 
 const TodoLogin = () => {
-  const apiReqs = new ApiRequests();
-  const user = new AuthenticationApi(apiReqs);
-  const appURL = 'https://mysterious-savannah-44011.herokuapp.com/';
+  let history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginUser = () => {
-    user.loginRequest(appURL + 'api/login', {
+  const loginUser = async () => {
+    const res = await user.loginRequest(appURL + 'api/login', {
       body: JSON.stringify({
         email: email,
         password: password,
       }),
     });
+
+    if (res.error) alert(res.error.message);
+
+    if (localStorage.getItem('token')) {
+      history.push('todos');
+      window.location.reload();
+    }
   };
 
   return (

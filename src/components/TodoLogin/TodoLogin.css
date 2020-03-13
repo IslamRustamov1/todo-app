@@ -38,7 +38,10 @@
 
 .todo-login__submit {
   margin-bottom: 20px;
+  height: 40px;
+  width: 80px;
   background-color: white;
+  cursor: pointer;
   outline: none;
   font-size: 110%;
   font-family: 'Roboto', serif;

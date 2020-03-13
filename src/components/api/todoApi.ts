@@ -1,6 +1,4 @@
-import AuthenticationApi from './AuthenticationApi';
 import { NetworkClientType } from '../types/types';
-import { RequestOptionsType } from '../types/types';
 
 export default class TodoApi {
   networkClient: NetworkClientType;
@@ -9,39 +7,36 @@ export default class TodoApi {
     this.networkClient = netClient;
   }
 
-  // postRequest = async (url: string, body: Object) => {
-  //   const result = await this.networkClient.postRequest(url, body, {
-  //     token: this.user.token,
-  //   });
-  //   console.log(result);
-  // };
-
-  getRequest = async (url: string, body: Object) => {
-    const options = {
+  getOptions = () => {
+    return {
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
     };
+  };
+
+  postRequest = async (url: string, body: Object) => {
+    const options = this.getOptions();
+    const result = await this.networkClient.postRequest(url, body, options);
+
+    return result.data;
+  };
+
+  getRequest = async (url: string, body: Object) => {
+    const options = this.getOptions();
     const result = await this.networkClient.getRequest(url, body, options);
-    console.log(result);
+
+    return result.data;
   };
 
-  putRequest = async (
-    url: string,
-    body: Object,
-    options: RequestOptionsType,
-  ) => {
-    const result = await this.networkClient.postRequest(url, body);
-    console.log(result);
+  putRequest = async (url: string, body: Object) => {
+    const options = this.getOptions();
+    const result = await this.networkClient.putRequest(url, body, options);
   };
 
-  deleteRequest = async (
-    url: string,
-    body: Object,
-    options: RequestOptionsType,
-  ) => {
-    const result = await this.networkClient.postRequest(url, body);
-    console.log(result);
+  deleteRequest = async (url: string, body: Object) => {
+    const options = this.getOptions();
+    const result = await this.networkClient.deleteRequest(url, body, options);
   };
 }
