@@ -1,0 +1,32 @@
+.todo-routes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-routes__logout-button,
+.todo-routes__login-button,
+.todo-routes__signup-button {
+  outline: none;
+  border-style: solid;
+  background-color: white;
+  cursor: pointer;
+  font-size: 110%;
+  height: 40px;
+  width: 80px;
+  border-width: 1px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.todo-routes__signup-button {
+  margin-left: 100px;
+}
+
+.todo-routes__logout-button {
+  margin-top: 25px;
+}
+
+a {
+  text-decoration: none;
+  color: rgba(155, 57, 18, 0.7);
+}
