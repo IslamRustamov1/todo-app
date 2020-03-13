@@ -17,26 +17,38 @@ export default class TodoApi {
   };
 
   postRequest = async (url: string, body: Object) => {
-    const options = this.getOptions();
-    const result = await this.networkClient.postRequest(url, body, options);
+    const result = await this.networkClient.postRequest(
+      url,
+      body,
+      this.getOptions(),
+    );
 
     return result.data;
   };
 
   getRequest = async (url: string, body: Object) => {
-    const options = this.getOptions();
-    const result = await this.networkClient.getRequest(url, body, options);
+    const result = await this.networkClient.getRequest(
+      url,
+      body,
+      this.getOptions(),
+    );
 
     return result.data;
   };
 
   putRequest = async (url: string, body: Object) => {
-    const options = this.getOptions();
-    const result = await this.networkClient.putRequest(url, body, options);
+    const result = await this.networkClient.putRequest(
+      url,
+      body,
+      this.getOptions(),
+    );
   };
 
   deleteRequest = async (url: string, body: Object) => {
-    const options = this.getOptions();
-    const result = await this.networkClient.deleteRequest(url, body, options);
+    const result = await this.networkClient.deleteRequest(
+      url,
+      body,
+      this.getOptions(),
+    );
   };
 }

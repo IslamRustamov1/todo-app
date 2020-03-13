@@ -23,7 +23,6 @@ const TodoForm = observer(() => {
     showEditWindow,
     checkItem,
     clearAllCompleted,
-    showClearCompletedButton,
     editItemValue,
   } = rootStoreContext.ITEM_STORE;
 
@@ -85,7 +84,7 @@ const TodoForm = observer(() => {
             itemsAmount={amount}
             handleFilterChange={changeFilterType}
             handleClearCompleted={clearAllCompleted}
-            showClearCompleted={showClearCompletedButton}
+            showClearCompleted={items.some(item => item.completed)}
           />
         )}
       </div>
@@ -96,6 +95,7 @@ const TodoForm = observer(() => {
         </div>
       )}
       {!localStorage.getItem('token') && <Redirect to="/login" />}
+      <h6>Double-click to edit todo</h6>
     </div>
   );
 });

@@ -147,10 +147,6 @@ export default class ItemStore {
     }
   };
 
-  showClearCompletedButton = () => {
-    return this.items.some(item => item.completed);
-  };
-
   showEditWindow = (changedItemID: string) => {
     const itemsCopy = this.items.map(item => {
       if (changedItemID === item.id) {
@@ -172,7 +168,6 @@ decorate(ItemStore, {
   clearAllCompleted: action,
   deleteItem: action,
   completeAllItems: action,
-  showClearCompletedButton: action,
   showEditWindow: action,
   editItemValue: action,
 });

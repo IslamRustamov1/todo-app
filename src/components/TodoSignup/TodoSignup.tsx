@@ -38,12 +38,14 @@ const TodoSignup = () => {
           type="text"
           className="todo-signup__login-text"
           onChange={e => setEmail(e.currentTarget.value)}
+          placeholder="user@email.com"
         />
         <p className="todo-signup__password">Your password</p>
         <input
           type="text"
           className="todo-signup__password-text"
           onChange={e => setPassword(e.currentTarget.value)}
+          placeholder="..."
         />
         <br />
         <input

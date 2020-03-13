@@ -51,3 +51,23 @@
   border-width: 1px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
+
+.todo-signup__login-text,
+.todo-signup__password-text {
+  outline: none;
+  height: 20px;
+  font-size: 120%;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(124, 124, 124, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.todo-signup__login-text:focus::placeholder {
+  color: transparent;
+}
+
+.todo-signup__password-text:focus::placeholder {
+  color: transparent;
+}

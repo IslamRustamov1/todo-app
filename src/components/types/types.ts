@@ -30,7 +30,6 @@ export interface ItemStoreType {
   clearAllCompleted: Function;
   deleteItem: Function;
   completeAllItems: Function;
-  showClearCompletedButton: Function;
   showEditWindow: Function;
   editItemValue: Function;
 }
@@ -46,7 +45,7 @@ export interface TokenType {
 
 export interface TodoFooterProps {
   itemsAmount: number;
-  showClearCompleted: Function;
+  showClearCompleted: boolean;
   handleFilterChange: Function;
   handleClearCompleted: Function;
 }

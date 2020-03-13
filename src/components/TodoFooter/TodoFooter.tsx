@@ -57,7 +57,7 @@ export const TodoFooter = observer((props: TodoFooterProps) => {
           </label>
         </div>
       </div>
-      {showClearCompleted() && (
+      {showClearCompleted && (
         <button
           type="button"
           className="todo-footer__button"
