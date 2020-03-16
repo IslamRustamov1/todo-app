@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { TodoFooterProps } from '../types/types';
+import { TodoFooterProps } from '../../types/types';
 
 import './TodoFooter.css';
 

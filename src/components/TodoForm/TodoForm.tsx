@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { TodoInputField } from '../TodoInputField/TodoInputField';
 import { TodoItem } from '../TodoItem/TodoItem';
 import { TodoFooter } from '../TodoFooter/TodoFooter';
-import { ItemType } from '../types/types';
+import { ItemType } from '../../types/types';
 import rootStore from '../mobx/rootStore';
 
 import './TodoForm.css';

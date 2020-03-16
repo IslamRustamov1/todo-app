@@ -5,10 +5,6 @@ export interface ItemType {
   editing: boolean;
 }
 
-export interface RequestOptionsType {
-  token: string;
-}
-
 export interface NetworkClientType {
   postRequest: Function;
   getRequest: Function;
@@ -37,10 +33,6 @@ export interface ItemStoreType {
 export interface RootStoreType {
   ITEM_STORE: ItemStoreType;
   FILTER_STORE: FilterStoreType;
-}
-
-export interface TokenType {
-  token: string;
 }
 
 export interface TodoFooterProps {

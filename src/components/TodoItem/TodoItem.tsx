@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { TodoItemProps } from '../types/types';
+import { TodoItemProps } from '../../types/types';
 
 import './TodoItem.css';
 

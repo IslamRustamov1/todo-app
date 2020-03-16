@@ -1,7 +1,7 @@
 import React from 'react';
 import ItemStore from './itemStore';
 import FilterStore from './filterStore';
-import { FilterStoreType, ItemStoreType } from '../types/types';
+import { FilterStoreType, ItemStoreType } from '../../types/types';
 
 class RootStore {
   ITEM_STORE: ItemStoreType;

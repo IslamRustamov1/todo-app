@@ -1,5 +1,5 @@
 import { observable, computed, decorate, action, toJS } from 'mobx';
-import { RootStoreType, ItemType } from '../types/types';
+import { RootStoreType, ItemType } from '../../types/types';
 import { todo, appURL } from '../mobx/constants';
 
 export default class ItemStore {
@@ -12,8 +12,21 @@ export default class ItemStore {
     if (localStorage.getItem('token')) this.requestAllTodos();
   }
 
+  getHeaders = () => {
+    return {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+    };
+  };
+
   requestAllTodos = async () => {
-    const todos = await todo.getRequest(appURL + 'api/user/todos', {});
+    const todos = await todo.getTodo(
+      appURL + 'api/user/todos',
+      {},
+      this.getHeaders(),
+    );
 
     todos.forEach((elem: any) => {
       let item: ItemType = {
@@ -41,9 +54,13 @@ export default class ItemStore {
       return item;
     });
 
-    todo.putRequest(appURL + 'api/user/todos/' + editedItem.id, {
-      body: JSON.stringify(editedItem),
-    });
+    todo.editTodo(
+      appURL + 'api/user/todos/' + editedItem.id,
+      {
+        body: JSON.stringify(editedItem),
+      },
+      this.getHeaders(),
+    );
 
     this.items = itemsCopy;
   };
@@ -57,9 +74,13 @@ export default class ItemStore {
     };
 
     await todo
-      .postRequest(appURL + 'api/user/todos', {
-        body: JSON.stringify(newItem),
-      })
+      .createTodo(
+        appURL + 'api/user/todos',
+        {
+          body: JSON.stringify(newItem),
+        },
+        this.getHeaders(),
+      )
       .then(data => (newItem.id = data._id));
 
     this.items.push(newItem);
@@ -70,9 +91,13 @@ export default class ItemStore {
       (item: ItemType) => item.id !== deletedItem.id,
     );
 
-    todo.deleteRequest(appURL + 'api/user/todos/' + deletedItem.id, {
-      body: JSON.stringify(deletedItem),
-    });
+    todo.deleteTodo(
+      appURL + 'api/user/todos/' + deletedItem.id,
+      {
+        body: JSON.stringify(deletedItem),
+      },
+      this.getHeaders(),
+    );
   };
 
   checkItem = (completedItemID: string) => {
@@ -82,17 +107,25 @@ export default class ItemStore {
 
     completedItem!.completed = !completedItem!.completed;
 
-    todo.putRequest(appURL + 'api/user/todos/' + completedItem!.id, {
-      body: JSON.stringify(completedItem),
-    });
+    todo.editTodo(
+      appURL + 'api/user/todos/' + completedItem!.id,
+      {
+        body: JSON.stringify(completedItem),
+      },
+      this.getHeaders(),
+    );
   };
 
   clearAllCompleted = () => {
     this.items.forEach((item: ItemType) => {
       if (item.completed) {
-        todo.deleteRequest(appURL + 'api/user/todos/' + item.id, {
-          body: JSON.stringify(item),
-        });
+        todo.deleteTodo(
+          appURL + 'api/user/todos/' + item.id,
+          {
+            body: JSON.stringify(item),
+          },
+          this.getHeaders(),
+        );
       }
     });
     this.items = this.items.filter((item: ItemType) => !item.completed);
@@ -127,9 +160,13 @@ export default class ItemStore {
     if (this.items.every(item => item.completed)) {
       const changedItems = this.items.map(item => {
         item.completed = false;
-        todo.putRequest(appURL + 'api/user/todos/' + item!.id, {
-          body: JSON.stringify(item),
-        });
+        todo.editTodo(
+          appURL + 'api/user/todos/' + item!.id,
+          {
+            body: JSON.stringify(item),
+          },
+          this.getHeaders(),
+        );
         return item;
       });
 
@@ -137,9 +174,13 @@ export default class ItemStore {
     } else {
       const changedItems = this.items.map(item => {
         item.completed = true;
-        todo.putRequest(appURL + 'api/user/todos/' + item!.id, {
-          body: JSON.stringify(item),
-        });
+        todo.editTodo(
+          appURL + 'api/user/todos/' + item!.id,
+          {
+            body: JSON.stringify(item),
+          },
+          this.getHeaders(),
+        );
         return item;
       });
 

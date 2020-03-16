@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { TodoInputProps } from '../types/types';
+import { TodoInputProps } from '../../types/types';
 
 import './TodoInputField.css';
 

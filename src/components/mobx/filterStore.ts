@@ -1,6 +1,6 @@
 import { observable, decorate, action } from 'mobx';
 
-import { RootStoreType } from '../types/types';
+import { RootStoreType } from '../../types/types';
 
 export default class FilterStore {
   rootStore: RootStoreType;

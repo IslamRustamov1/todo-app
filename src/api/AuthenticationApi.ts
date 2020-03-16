@@ -7,7 +7,7 @@ export default class AuthenticationApi {
     this.networkClient = netClient;
   }
 
-  getOptions = () => {
+  getHeaders = () => {
     return {
       headers: {
         'Content-Type': 'application/json',
@@ -16,15 +16,21 @@ export default class AuthenticationApi {
   };
 
   signupRequest = async (url: string, body: Object) => {
-    const options = this.getOptions();
-    const result = await this.networkClient.postRequest(url, body, options);
+    const result = await this.networkClient.postRequest(
+      url,
+      body,
+      this.getHeaders(),
+    );
 
     return result;
   };
 
   loginRequest = async (url: string, body: Object) => {
-    const options = this.getOptions();
-    const result = await this.networkClient.postRequest(url, body, options);
+    const result = await this.networkClient.postRequest(
+      url,
+      body,
+      this.getHeaders(),
+    );
 
     if (result.token) localStorage.setItem('token', result.token);
 
