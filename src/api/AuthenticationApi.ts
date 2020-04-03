@@ -31,7 +31,7 @@ export default class AuthenticationApi {
       body,
       this.getHeaders(),
     );
-
+    console.log(result);
     if (result.token) localStorage.setItem('token', result.token);
 
     return result;
